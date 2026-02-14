@@ -1,5 +1,6 @@
 package com.example.myapplication2
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -10,6 +11,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.RequiresPermission
 import com.example.myapplication2.listeners.CompositeListener
 import com.example.myapplication2.listeners.GestureDetectListener
 import com.example.myapplication2.senders.RelativeMouseSender
@@ -268,6 +270,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
 
     }
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     public override fun onStop() {
         super.onStop()
         BluetoothController.btHid?.unregisterApp()
@@ -356,6 +359,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
     }
 
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_settings -> {
             // User chose the "Settings" item, show the app settings UI...
@@ -367,7 +371,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
 
 
 
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
 
 
@@ -411,7 +415,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
         }
 
         R.id.action_screen_on -> {
-            val sharedPref = this?.getPreferences(Context.MODE_PRIVATE)
+            val sharedPref = this?.getPreferences(MODE_PRIVATE)
             if(item.isChecked) {
                 item.isChecked = false
 
@@ -441,7 +445,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
         }
 
         R.id.action_autopair -> {
-            val sharedPref = this?.getPreferences(Context.MODE_PRIVATE)
+            val sharedPref = this?.getPreferences(MODE_PRIVATE)
             if(item.isChecked) {
                 item.isChecked = false
                 BluetoothController.autoPairFlag=false
