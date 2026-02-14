@@ -30,6 +30,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
     private var bluetoothStatus : MenuItem? =null
 
     private lateinit var linearLayout: _LinearLayout
+    @OptIn(ExperimentalUnsignedTypes::class)
     private var sender: SensorSender? = null
     //private var  viewTouchListener : ViewListener? = null
     private var modifier_checked_state : Int =0
@@ -118,6 +119,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
 
 
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     public override fun onStart() {
         super.onStart()
 
@@ -148,7 +150,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
         BluetoothController.init(this)
 
         BluetoothController.getSender { hidd, device ->
-            Log.wtf("weiufhas", "Callback called")
+            Log.wtf("weightages", "Callback called")
             val mainHandler = Handler(getContext().mainLooper)
 
             mainHandler.post(object : Runnable{
