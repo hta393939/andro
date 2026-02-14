@@ -12,6 +12,8 @@ import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresPermission
+import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.Composable
 import com.example.myapplication2.listeners.CompositeListener
 import com.example.myapplication2.listeners.GestureDetectListener
 import com.example.myapplication2.senders.RelativeMouseSender
@@ -41,11 +43,12 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
 
 
 
+    @Composable
     @SuppressLint("ResourceType")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-            verticalLayout {
+            Column {
 
 
 
@@ -57,7 +60,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
 
 
                 linearLayout = this
-                id = 0x69
+                //id = 0x69
                 //gravity = Gravity.CENTER
 //                button("TEST") {
 //                    setOnClickListener {
@@ -67,7 +70,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
 //                }
 
 
-
+/* 一旦コメントアウトしてみる
                 textView(){
                   id= R.id.mouseView
                   background=getDrawable(R.drawable.view_border)
@@ -78,7 +81,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
 
 
                 }.lparams(width= matchParent,height = matchParent )
-
+*/
             }
     }
 
@@ -94,7 +97,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
         bluetoothStatus?.tooltipText="App not connected via bluetooth"
 
 
-        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        val sharedPref = this.getPreferences(MODE_PRIVATE)
 
 
         BluetoothController.autoPairFlag= sharedPref.getBoolean(getString(R.string.auto_pair_flag),false)
@@ -106,7 +109,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
         if(sharedPref.getBoolean(getString(R.string.screen_on_flag),false)) window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         else getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        val trackPadView = find<View>(R.id.mouseView)
+        //val trackPadView = find<View>(R.id.mouseView)
 
         BluetoothController.init(this)
 
@@ -146,7 +149,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
 
                     composite.registerListener(gTouchListener)
                     composite.registerListener(viewTouchListener)
-                    trackPadView.setOnTouchListener(composite)
+                    //trackPadView.setOnTouchListener(composite)
 
                     bluetoothStatus?.icon = getDrawable(R.drawable.ic_action_app_connected)
                     bluetoothStatus?.tooltipText="App Connected via bluetooth"
@@ -238,7 +241,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
         autoPairMenuItem= menu?.findItem(R.id.action_autopair)
 
         screenOnMenuItem = menu?.findItem(R.id.action_screen_on)
-        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        val sharedPref = this.getPreferences(MODE_PRIVATE)
 
         screenOnMenuItem?.isChecked = sharedPref.getBoolean(getString(R.string.screen_on_flag),false);
         Log.i("crown","jewel")
