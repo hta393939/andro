@@ -3,6 +3,7 @@ package com.example.myapplication2
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
@@ -22,9 +23,9 @@ import com.example.myapplication2.listeners.ViewListener
 import com.example.myapplication2.extraLibraries.CustomGestureDetector
 import com.example.myapplication2.senders.KeyboardSender
 
-
+@SuppressLint("RestrictedApi")
 class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
-
+    //class SelectDeviceActivity: Activity(),KeyEvent.Callback {
     private var autoPairMenuItem : MenuItem? =null
     private var screenOnMenuItem : MenuItem? =null
 
@@ -39,15 +40,11 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 
     private var rKeyboardSender : KeyboardSender? = null
 
-
-
-
-    @Composable
-    @SuppressLint("ResourceType")
+    @SuppressLint("RestrictedApi")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-            Column {
+            //Column {
                         // justify your toolbar
 
                 //linearLayout = this
@@ -73,7 +70,7 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 
                 }.lparams(width= matchParent,height = matchParent )
 */
-            }
+            //}
     }
 
     fun getContext(): Context {
@@ -280,6 +277,7 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
     }
 
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
 
 
@@ -403,7 +401,7 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
             {
                 item.isChecked=true
                 BluetoothController.autoPairFlag=true
-                if(BluetoothController.btHid?.getConnectionState(BluetoothController.mpluggedDevice)==0 && BluetoothController.mpluggedDevice!= null && BluetoothController.autoPairFlag ==true)
+                if(BluetoothController.btHid?.getConnectionState(BluetoothController.mpluggedDevice)== BluetoothProfile.STATE_DISCONNECTED && BluetoothController.mpluggedDevice!= null && BluetoothController.autoPairFlag)
                 {
                     BluetoothController.btHid?.connect(BluetoothController.mpluggedDevice)
                     //hostDevice.toString()

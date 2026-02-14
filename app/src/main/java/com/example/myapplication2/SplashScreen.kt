@@ -1,11 +1,13 @@
 package com.example.myapplication2
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
 //import org.jetbrains.anko.startActivity
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreen: Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +18,8 @@ class SplashScreen: Activity() {
             )
         } else {
 
-            startActivity<SelectDeviceActivity>()
+            //startActivity<SelectDeviceActivity>()
+            startActivity<SplashScreen>()
 
             finish()
         }
