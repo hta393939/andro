@@ -1,5 +1,6 @@
 package com.example.myapplication2.senders
 
+import android.Manifest
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothHidDevice
 import android.hardware.Sensor
@@ -7,6 +8,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
+import androidx.annotation.RequiresPermission
 import com.example.myapplication2.reports.AbsMouseReport
 import kotlin.math.PI
 import kotlin.math.roundToInt
@@ -26,6 +28,7 @@ class SensorSender(hidDevice: BluetoothHidDevice, host: BluetoothDevice): Sender
         }}")
     }
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     override fun onSensorChanged(event: SensorEvent) {
         val angleX = event.values[2].toDouble()
         val angleY = event.values[0].toDouble()
