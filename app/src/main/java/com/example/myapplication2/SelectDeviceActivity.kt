@@ -4,8 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.hardware.Sensor
-import android.hardware.SensorManager
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -14,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresPermission
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.core.app.ComponentActivity
 import com.example.myapplication2.listeners.CompositeListener
 import com.example.myapplication2.listeners.GestureDetectListener
 import com.example.myapplication2.senders.RelativeMouseSender
@@ -24,14 +23,14 @@ import com.example.myapplication2.extraLibraries.CustomGestureDetector
 import com.example.myapplication2.senders.KeyboardSender
 
 
-class SelectDeviceActivity: Activity(),KeyEvent.Callback {
+class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 
     private var autoPairMenuItem : MenuItem? =null
     private var screenOnMenuItem : MenuItem? =null
 
     private var bluetoothStatus : MenuItem? =null
 
-    private lateinit var linearLayout: _LinearLayout
+    //private lateinit var linearLayout: _LinearLayout
     @OptIn(ExperimentalUnsignedTypes::class)
     private var sender: SensorSender? = null
     //private var  viewTouchListener : ViewListener? = null
@@ -49,17 +48,9 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
         super.onCreate(savedInstanceState)
 
             Column {
-
-
-
                         // justify your toolbar
 
-
-
-
-
-
-                linearLayout = this
+                //linearLayout = this
                 //id = 0x69
                 //gravity = Gravity.CENTER
 //                button("TEST") {
