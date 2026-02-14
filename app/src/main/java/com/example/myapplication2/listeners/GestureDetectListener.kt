@@ -128,13 +128,13 @@ class GestureDetectListener(val rMouseSender : RelativeMouseSender) : GestureDet
         }
         return false
     }
-    override fun onDoubleTap(e: MotionEvent?): Boolean {
+    override fun onDoubleTap(e: MotionEvent): Boolean {
         Log.i("doubleddht","this is on double tap $e")
 
         return false
     }
 
-    override fun onDoubleTapEvent(e: MotionEvent?): Boolean {
+    override fun onDoubleTapEvent(e: MotionEvent): Boolean {
         Log.i("doubleddhe","this is on double tap event $e")
         if(mPtrCount==1)
         {
@@ -175,7 +175,7 @@ class GestureDetectListener(val rMouseSender : RelativeMouseSender) : GestureDet
         return false
     }
 
-    override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
+    override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
         Log.i("doubleddhs","this is on single tap confirmed $e")
         if(disableSingleTapFlag==1)
         {
@@ -187,19 +187,24 @@ class GestureDetectListener(val rMouseSender : RelativeMouseSender) : GestureDet
         return false
     }
 
-    override fun onSingleTapUp(e: MotionEvent?): Boolean {
+    override fun onSingleTapUp(e: MotionEvent): Boolean {
         Log.i("doubleddhu","this is on single tap up $e")
         //
         return true
     }
 
-    override fun onDown(e: MotionEvent?): Boolean {
+    override fun onDown(e: MotionEvent): Boolean {
         Log.d("ggkjh", "onDown: $e")
        return false
 
     }
 
-    override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+    override fun onFling(
+        e1: MotionEvent?,
+        e2: MotionEvent,
+        velocityX: Float,
+        velocityY: Float
+    ): Boolean {
        Log.i("this is a fling e1 ","$e1")
         Log.i("this is a fling e2 ","$e2")
         Log.i("this is a fling vx ","$velocityX")
@@ -209,7 +214,12 @@ class GestureDetectListener(val rMouseSender : RelativeMouseSender) : GestureDet
         return false
     }
 
-    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+    override fun onScroll(
+        e1: MotionEvent?,
+        e2: MotionEvent,
+        distanceX: Float,
+        distanceY: Float
+    ): Boolean {
 
 
         if(mPtrCount==2) {
@@ -227,17 +237,15 @@ class GestureDetectListener(val rMouseSender : RelativeMouseSender) : GestureDet
 
             var dy: Int =0
             var dx :Int =0
-            if(distanceY>0) dy= -1
-
-            else if(distanceY<0) dy = 1
-            else if(distanceY==0f) dy=0
+            dy = if(distanceY>0) -1
+            else if(distanceY<0) 1
+            else 0
             //else dy=0
 
-            if(distanceX>2) dx= 1
-
-            else if(distanceX<-2) dx = -1
+            dx = if(distanceX>2) 1
+            else if(distanceX<-2) -1
             //else if(distanceX==0f) dx=0
-            else dx=0
+            else 0
 
 
             if (dx > 127) dx = 127
@@ -275,11 +283,11 @@ class GestureDetectListener(val rMouseSender : RelativeMouseSender) : GestureDet
         return false
     }
 
-    override fun onLongPress(e: MotionEvent?) {
+    override fun onLongPress(e: MotionEvent) {
 
     }
 
-    override fun onShowPress(e: MotionEvent?) {
+    override fun onShowPress(e: MotionEvent) {
 
     }
 
