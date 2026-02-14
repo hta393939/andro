@@ -1,8 +1,10 @@
 package com.example.myapplication2
 
+import android.Manifest
 import android.bluetooth.*
 import android.content.Context
 import android.util.Log
+import androidx.annotation.RequiresPermission
 import com.example.myapplication2.reports.FeatureReport
 
 
@@ -21,6 +23,7 @@ object BluetoothController: BluetoothHidDevice.Callback(), BluetoothProfile.Serv
     }
 
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     override fun onGetReport(device: BluetoothDevice?, type: Byte, id: Byte, bufferSize: Int) {
 
         Log.i("getbefore", "first")

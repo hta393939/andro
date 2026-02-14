@@ -19,7 +19,7 @@ import com.example.myapplication2.senders.SensorSender
 import com.example.myapplication2.listeners.ViewListener
 import org.jetbrains.anko.*
 import com.example.myapplication2.extraLibraries.CustomGestureDetector
-import com.example.myppplication2.senders.KeyboardSender
+import com.example.myapplication2.senders.KeyboardSender
 
 
 class SelectDeviceActivity: Activity(),KeyEvent.Callback {
