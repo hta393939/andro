@@ -8,7 +8,7 @@ import com.example.myapplication2.listeners.GestureDetectListener
 class CustomGestureDetector(context: Context, internal var mListener: GestureDetectListener) :
     GestureDetector(context, mListener) {
 
-    fun onTouchEvent(ev: MotionEvent?): Boolean {
+    override fun onTouchEvent(ev: MotionEvent): Boolean {
         val consume = mListener.onTouchEvent(ev)
         // NOTE: わからん
         return consume

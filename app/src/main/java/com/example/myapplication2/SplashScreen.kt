@@ -18,8 +18,8 @@ class SplashScreen: Activity() {
             )
         } else {
 
-            //startActivity<SelectDeviceActivity>()
-            startActivity<SplashScreen>()
+            startActivity<SelectDeviceActivity>()
+            //startActivity<SplashScreen>()
 
             finish()
         }

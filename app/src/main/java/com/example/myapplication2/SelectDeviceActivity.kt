@@ -12,7 +12,10 @@ import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresPermission
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.app.ComponentActivity
 import com.example.myapplication2.listeners.CompositeListener
 import com.example.myapplication2.listeners.GestureDetectListener
@@ -22,6 +25,7 @@ import com.example.myapplication2.listeners.ViewListener
 //import org.jetbrains.anko.*
 import com.example.myapplication2.extraLibraries.CustomGestureDetector
 import com.example.myapplication2.senders.KeyboardSender
+import com.example.myapplication2.ui.theme.MyApplication2Theme
 
 @SuppressLint("RestrictedApi")
 class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
@@ -40,9 +44,12 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 
     private var rKeyboardSender : KeyboardSender? = null
 
+
     @SuppressLint("RestrictedApi")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //Greeting2("name")
 
             //Column {
                         // justify your toolbar
@@ -122,7 +129,8 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 
                     val gTouchListener = object : View.OnTouchListener {
 
-                        override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                        @SuppressLint("ClickableViewAccessibility")
+                        override fun onTouch(v: View?, event: MotionEvent): Boolean {
 
                             return mDetector.onTouchEvent(event)
 
@@ -426,4 +434,21 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 
 
 
+}
+
+
+@Composable
+fun Greeting2(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview2() {
+    MyApplication2Theme {
+        Greeting("Android")
+    }
 }
