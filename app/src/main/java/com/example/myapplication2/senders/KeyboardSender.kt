@@ -2,10 +2,12 @@ package com.example.myapplication2.senders
 
 
 
+import android.Manifest
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothHidDevice
 import android.util.Log
 import android.view.KeyEvent
+import androidx.annotation.RequiresPermission
 import com.example.myapplication2.reports.KeyboardReport
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -18,15 +20,17 @@ open class KeyboardSender(
     //val keyPosition : IntArray = IntArray(6){0}
 
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     protected open fun sendKeys() {
         if (!hidDevice.sendReport(host, KeyboardReport.ID, keyboardReport.bytes)) {
             Log.e(TAG, "Report wasn't sent")
         }
     }
 
-    protected open fun customSender(modifier_checked_state: Int) {
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
+    protected open fun customSender(modifierCheckedState: Int) {
         sendKeys()
-        if(modifier_checked_state==0) sendNullKeys()
+        if(modifierCheckedState==0) sendNullKeys()
         else {
             keyboardReport.key1=0.toByte()
             sendKeys()
@@ -40,6 +44,7 @@ open class KeyboardSender(
         if(event.isMetaPressed) keyboardReport.leftGui=true
     }
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     fun sendNullKeys() {
         keyboardReport.bytes.fill(0)
         if (!hidDevice.sendReport(host, KeyboardReport.ID, keyboardReport.bytes)) {
@@ -47,7 +52,8 @@ open class KeyboardSender(
         }
     }
 
-    fun keyEventHandler(keyEventCode: Int, event : KeyEvent, modifier_checked_state: Int,keyCode:Int): Boolean{
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
+    fun keyEventHandler(keyEventCode: Int, event : KeyEvent, modifierCheckedState: Int, keyCode:Int): Boolean{
 
 
         val byteKey = KeyboardReport.KeyEventMap[keyEventCode]
@@ -60,7 +66,7 @@ open class KeyboardSender(
                 keyboardReport.leftShift=true
             }
             keyboardReport.key1=byteKey.toByte()
-            customSender(modifier_checked_state)
+            customSender(modifierCheckedState)
 
             return true
         }
@@ -74,10 +80,11 @@ open class KeyboardSender(
     }
 
 
-    fun sendKeyboard(keyCode : Int, event : KeyEvent, modifier_checked_state :Int): Boolean {
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
+    fun sendKeyboard(keyCode : Int, event : KeyEvent, modifierCheckedState :Int): Boolean {
 
 
-        return keyEventHandler(event.keyCode,event,modifier_checked_state,keyCode)
+        return keyEventHandler(event.keyCode,event,modifierCheckedState,keyCode)
 
 
 //        return when (event.keyCode) {
