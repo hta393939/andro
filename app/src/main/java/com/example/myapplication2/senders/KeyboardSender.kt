@@ -1,4 +1,4 @@
-package com.github.roarappstudio.btkontroller.senders
+package com.example.myapplication2.senders
 
 
 
@@ -6,7 +6,7 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothHidDevice
 import android.util.Log
 import android.view.KeyEvent
-import com.github.roarappstudio.btkontroller.reports.KeyboardReport
+import com.example.myapplication2.reports.KeyboardReport
 
 @Suppress("MemberVisibilityCanBePrivate")
 open class KeyboardSender(

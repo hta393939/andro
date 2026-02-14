@@ -1,10 +1,10 @@
-package com.github.roarappstudio.btkontroller.listeners
+package com.example.myapplication2.listeners
 
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ViewConfiguration
-import com.github.roarappstudio.btkontroller.senders.RelativeMouseSender
+import com.example.myapplication2.senders.RelativeMouseSender
 import java.util.*
 import kotlin.concurrent.schedule
 

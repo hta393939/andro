@@ -1,11 +1,11 @@
-package com.github.roarappstudio.btkontroller.listeners
+package com.example.myapplication2.listeners
 
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothHidDevice
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import com.github.roarappstudio.btkontroller.senders.RelativeMouseSender
+import com.example.myapplication2.senders.RelativeMouseSender
 import java.nio.ByteBuffer
 import kotlin.math.roundToInt
 

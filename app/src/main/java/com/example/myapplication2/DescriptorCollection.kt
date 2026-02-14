@@ -1,4 +1,4 @@
-package com.github.roarappstudio.btkontroller
+package com.example.myapplication2
 
 object DescriptorCollection {
 

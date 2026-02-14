@@ -1,9 +1,9 @@
-package com.github.roarappstudio.btkontroller.senders
+package com.example.myapplication2.senders
 
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothHidDevice
 import android.util.Log
-import com.github.roarappstudio.btkontroller.reports.ScrollableTrackpadMouseReport
+import com.example.myapplication2.reports.ScrollableTrackpadMouseReport
 import java.util.*
 import kotlin.concurrent.schedule
 

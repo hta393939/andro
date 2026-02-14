@@ -1,9 +1,9 @@
-package com.github.roarappstudio.btkontroller
+package com.example.myapplication2
 
 import android.bluetooth.*
 import android.content.Context
 import android.util.Log
-import com.github.roarappstudio.btkontroller.reports.FeatureReport
+import com.example.myapplication2.reports.FeatureReport
 
 
 @Suppress("MemberVisibilityCanBePrivate")

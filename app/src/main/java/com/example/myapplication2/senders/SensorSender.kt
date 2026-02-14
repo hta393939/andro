@@ -1,4 +1,4 @@
-package com.github.roarappstudio.btkontroller.senders
+package com.example.myapplication2.senders
 
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothHidDevice
@@ -7,7 +7,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
-import com.github.roarappstudio.btkontroller.reports.AbsMouseReport
+import com.example.myapplication2.reports.AbsMouseReport
 import kotlin.math.PI
 import kotlin.math.roundToInt
 

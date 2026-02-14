@@ -1,4 +1,4 @@
-package com.github.roarappstudio.btkontroller
+package com.example.myapplication2
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -10,14 +10,14 @@ import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import com.github.roarappstudio.btkontroller.listeners.CompositeListener
-import com.github.roarappstudio.btkontroller.listeners.GestureDetectListener
-import com.github.roarappstudio.btkontroller.senders.RelativeMouseSender
-import com.github.roarappstudio.btkontroller.senders.SensorSender
-import com.github.roarappstudio.btkontroller.listeners.ViewListener
+import com.example.myapplication2.listeners.CompositeListener
+import com.example.myapplication2.listeners.GestureDetectListener
+import com.example.myapplication2.senders.RelativeMouseSender
+import com.example.myapplication2.senders.SensorSender
+import com.example.myapplication2.listeners.ViewListener
 import org.jetbrains.anko.*
-import com.github.roarappstudio.btkontroller.extraLibraries.CustomGestureDetector
-import com.github.roarappstudio.btkontroller.senders.KeyboardSender
+import com.example.myapplication2.extraLibraries.CustomGestureDetector
+import com.example.myppplication2.senders.KeyboardSender
 
 
 class SelectDeviceActivity: Activity(),KeyEvent.Callback {
