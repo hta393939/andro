@@ -17,7 +17,7 @@ import com.example.myapplication2.listeners.GestureDetectListener
 import com.example.myapplication2.senders.RelativeMouseSender
 import com.example.myapplication2.senders.SensorSender
 import com.example.myapplication2.listeners.ViewListener
-import org.jetbrains.anko.*
+//import org.jetbrains.anko.*
 import com.example.myapplication2.extraLibraries.CustomGestureDetector
 import com.example.myapplication2.senders.KeyboardSender
 
@@ -80,44 +80,11 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
                 }.lparams(width= matchParent,height = matchParent )
 
             }
-
-
-//        var x= -2047
-//        var baos : ByteArrayOutputStream = ByteArrayOutputStream()
-//        var daos : DataOutputStream = DataOutputStream(baos)
-//
-//        daos.writeInt(x)
-//        daos.close()
-//        val bytes : ByteArray = baos.toByteArray()
-//        Log.i("dd",bytes[3].toString())
-//
-//
-//        val bytes1 : ByteArray = ByteArray(4){0}
-//        val buff : ByteBuffer = ByteBuffer.wrap(bytes1)
-//        buff.putInt(x)
-//        Log.i("dd1",bytes1.contentToString())
-//        val buff1 : ByteBuffer = ByteBuffer.wrap(bytes1)
-//        Log.i("dd1",buff1.getInt().toString())
-//
-//        val bytes2 : ByteArray = ByteArray(2){0}
-//        val buff3 : ByteBuffer = ByteBuffer.wrap(bytes2)
-//        buff3.putShort(-2047)
-//        //bytes2[0]= bytes1[2]
-//        //bytes2[1]= bytes1[3]
-//        Log.i("dd2",bytes2[0].toString())
-//        val buff2 : ByteBuffer = ByteBuffer.wrap(bytes2)
-//
-//        Log.i("dd2",buff2.getShort().toString())
-
-
     }
 
     fun getContext(): Context {
         return this
     }
-
-
-
 
     @OptIn(ExperimentalUnsignedTypes::class)
     public override fun onStart() {
@@ -139,13 +106,7 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
         if(sharedPref.getBoolean(getString(R.string.screen_on_flag),false)) window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         else getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-
-
         val trackPadView = find<View>(R.id.mouseView)
-
-
-
-
 
         BluetoothController.init(this)
 
@@ -187,25 +148,13 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
                     composite.registerListener(viewTouchListener)
                     trackPadView.setOnTouchListener(composite)
 
-
-
-
-
-
                     bluetoothStatus?.icon = getDrawable(R.drawable.ic_action_app_connected)
                     bluetoothStatus?.tooltipText="App Connected via bluetooth"
-
-
-
 
                     //------------trackPadView.setOnTouchListener(viewTouchListener)
                 }
 
             })
-
-
-
-
 
             //========val rMouseSender = RelativeMouseSender(hidd,device)
             //-------this.rMouseSender=rMouseSender
@@ -239,9 +188,6 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
 //            composite.registerListener(gTouchListener)
 //            myView.setOnTouchListener(composite)
 
-
-
-
          //   sender = SensorSender(hidd, device)
          //   initSensor()
         }
@@ -259,12 +205,12 @@ class SelectDeviceActivity: Activity(),KeyEvent.Callback {
 
 
     }
-
+/*
     private fun initSensor() {
         val sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR)
         sensorManager.registerListener(sender, sensor, SensorManager.SENSOR_DELAY_GAME)
     }
-
+*/
 
 
     public override fun onPause() {

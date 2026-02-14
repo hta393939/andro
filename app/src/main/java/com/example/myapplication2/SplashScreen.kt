@@ -4,7 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
-import org.jetbrains.anko.startActivity
+//import org.jetbrains.anko.startActivity
 
 class SplashScreen: Activity() {
 
