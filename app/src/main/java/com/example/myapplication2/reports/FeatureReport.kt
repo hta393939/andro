@@ -3,9 +3,11 @@ package com.example.myapplication2.reports
 import kotlin.experimental.and
 import kotlin.experimental.or
 
+@JvmInline
 @Suppress("EXPERIMENTAL_FEATURE_WARNING")
-inline class FeatureReport (
-    val bytes: ByteArray = ByteArray(1) {0}
+value class FeatureReport (
+    val bytes: ByteArray = ByteArray(10
+    ) { 0x01.toByte() }
 ) {
 
 
@@ -30,7 +32,7 @@ inline class FeatureReport (
 
 
 
-    fun reset() = bytes.fill(0)
+    //fun reset() = bytes.fill(0)
 
     companion object {
         const val ID = 6.toByte()
