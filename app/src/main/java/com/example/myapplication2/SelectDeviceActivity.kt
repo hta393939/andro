@@ -315,15 +315,8 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
         }
 
         R.id.action_keyboard -> {
-
-
-
-
-                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
-
-
-
+                //val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
 
             true
         }
