@@ -35,7 +35,7 @@ object BluetoothController: BluetoothHidDevice.Callback(), BluetoothProfile.Serv
                 featureReport.acPanResolutionMultiplier = true
                 Log.i("getbthid","$btHid")
 
-                 var wasrs=btHid?.replyReport(device, type, FeatureReport.ID, featureReport.bytes)
+                 val wasrs=btHid?.replyReport(device, type, FeatureReport.ID, featureReport.bytes)
                 Log.i("replysuccess flag ",wasrs.toString())
             }
 
@@ -43,7 +43,9 @@ object BluetoothController: BluetoothHidDevice.Callback(), BluetoothProfile.Serv
     }
 
 
-    val btAdapter by lazy { BluetoothAdapter.getDefaultAdapter()!! }
+    val btAdapter by lazy {
+        BluetoothAdapter.getDefaultAdapter()!!
+    }
     var btHid: BluetoothHidDevice? = null
     var hostDevice: BluetoothDevice? = null
     var autoPairFlag = false
@@ -87,6 +89,7 @@ object BluetoothController: BluetoothHidDevice.Callback(), BluetoothProfile.Serv
             btHid = null
     }
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     override fun onServiceConnected(profile: Int, proxy: BluetoothProfile) {
         Log.i(TAG, "Connected to service")
         if (profile != BluetoothProfile.HID_DEVICE) {
@@ -147,15 +150,16 @@ object BluetoothController: BluetoothHidDevice.Callback(), BluetoothProfile.Serv
         }
     }
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     override fun onAppStatusChanged(pluggedDevice: BluetoothDevice?, registered: Boolean) {
         super.onAppStatusChanged(pluggedDevice, registered)
         if(registered)
         {
-        var pairedDevices = btHid?.getDevicesMatchingConnectionStates(intArrayOf(BluetoothProfile.STATE_CONNECTING,BluetoothProfile.STATE_CONNECTED,BluetoothProfile.STATE_DISCONNECTED,BluetoothProfile.STATE_DISCONNECTING))
+        val pairedDevices = btHid?.getDevicesMatchingConnectionStates(intArrayOf(BluetoothProfile.STATE_CONNECTING,BluetoothProfile.STATE_CONNECTED,BluetoothProfile.STATE_DISCONNECTED,BluetoothProfile.STATE_DISCONNECTING))
         Log.d("paired d", "paired devices are : $pairedDevices")
         Log.d("paired d","${btHid?.getConnectionState(pairedDevices?.get(0))}")
         mpluggedDevice = pluggedDevice
-            if(btHid?.getConnectionState(pluggedDevice)==0 && pluggedDevice!= null && autoPairFlag ==true)
+            if(btHid?.getConnectionState(pluggedDevice)== BluetoothProfile.STATE_DISCONNECTED && pluggedDevice!= null && autoPairFlag)
         {
             btHid?.connect(pluggedDevice)
             //hostDevice.toString()
@@ -164,7 +168,7 @@ object BluetoothController: BluetoothHidDevice.Callback(), BluetoothProfile.Serv
         }
 
 
-        else if(btHid?.getConnectionState(pairedDevices?.get(0))==0 && autoPairFlag==true)
+        else if(btHid?.getConnectionState(pairedDevices?.get(0))== BluetoothProfile.STATE_DISCONNECTED && autoPairFlag)
             {
                 Log.i("ddaaqq","sssS"
                 )
