@@ -10,8 +10,11 @@ import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.compose.setContent
 import androidx.annotation.RequiresPermission
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -39,7 +42,7 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
     @OptIn(ExperimentalUnsignedTypes::class)
     private var sender: SensorSender? = null
     //private var  viewTouchListener : ViewListener? = null
-    private var modifier_checked_state : Int =0
+    private var modifierCheckedState : Int =0
     private var  rMouseSender : RelativeMouseSender? = null
 
     private var rKeyboardSender : KeyboardSender? = null
@@ -48,6 +51,14 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
     @SuppressLint("RestrictedApi")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //enableEdgeToEdge()
+        setContent {
+            MyApplication2Theme() {
+                Scaffold(modifier = Modifier.fillMaxWidth()) { innerPadding ->
+                    Greeting2('application2')
+                }
+            }
+        }
 
         //Greeting2("name")
 
@@ -270,7 +281,7 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 
 
         if(rKeyboardSender !=null && event !=null) {
-            var rvalue: Boolean? = false
+            val rvalue: Boolean? = false
             //rvalue = rKeyboardSender?.sendKeyboard(keyCode, event,modifier_checked_state)
 
             if (rvalue == true) return true
@@ -293,7 +304,7 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 
         if(rKeyboardSender !=null && event !=null) {
             var rvalue: Boolean? = false
-            rvalue = rKeyboardSender?.sendKeyboard(keyCode, event,modifier_checked_state)
+            rvalue = rKeyboardSender?.sendKeyboard(keyCode, event,modifierCheckedState)
 
             if (rvalue == true) return true
 
@@ -328,9 +339,9 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 //            if(item.isChecked)
 //                modifier_checked_state=1
 //            else modifier_checked_state=0
-            if(modifier_checked_state==1)
+            if(modifierCheckedState==1)
             {
-                modifier_checked_state=0
+                modifierCheckedState=0
                 item.title="(N)"
                 rKeyboardSender?.sendNullKeys()
 
@@ -338,12 +349,10 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 
             else
             {
-                modifier_checked_state=1
+                modifierCheckedState=1
                 item.title="(P)"
 
             }
-
-
 
             true
         }
