@@ -39,11 +39,22 @@ android {
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.17"
+    }
 }
 
 dependencies {
+    // Kotlin
+    //val activityVersion = "1.12.4"
+    //implementation("androidx.activity:activity-ktx.$activityVersion")
+    implementation(libs.androidx.activity.ktx.x.x2.x)
+
+
+    // NOTE: Grokの指示
+    implementation(libs.activity.compose)
+    //implementation(androidx.activity:activity-compose:1.9.3)
     implementation(libs.androidx.core.ktx)
-    //implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))

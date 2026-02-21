@@ -9,14 +9,16 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.*
-import android.view.inputmethod.InputMethodManager
+// NOTE: これ
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresPermission
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionContext
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.app.ComponentActivity
@@ -25,13 +27,13 @@ import com.example.myapplication2.listeners.GestureDetectListener
 import com.example.myapplication2.senders.RelativeMouseSender
 import com.example.myapplication2.senders.SensorSender
 import com.example.myapplication2.listeners.ViewListener
-//import org.jetbrains.anko.*
 import com.example.myapplication2.extraLibraries.CustomGestureDetector
 import com.example.myapplication2.senders.KeyboardSender
 import com.example.myapplication2.ui.theme.MyApplication2Theme
 
-@SuppressLint("RestrictedApi")
-class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
+
+//@SuppressLint("RestrictedApi")
+class SelectDeviceActivity: Activity(),KeyEvent.Callback {
     //class SelectDeviceActivity: Activity(),KeyEvent.Callback {
     private var autoPairMenuItem : MenuItem? =null
     private var screenOnMenuItem : MenuItem? =null
@@ -48,21 +50,44 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
     private var rKeyboardSender : KeyboardSender? = null
 
 
-    @SuppressLint("RestrictedApi")
+    //@Composable
+    @SuppressLint("ResourceType")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         //enableEdgeToEdge()
+        /*
         setContent {
             MyApplication2Theme() {
                 Scaffold(modifier = Modifier.fillMaxWidth()) { innerPadding ->
-                    Greeting2('application2')
+                    Greeting2("application2",
+                        modifier = Modifier.padding(innerPadding))
                 }
             }
-        }
+        }*/
 
-        //Greeting2("name")
 
-            //Column {
+        /*
+        setContent(parent = null,
+            MyApplication2Theme() {
+                Scaffold(modifier = Modifier.fillMaxWidth()) { innerPadding ->
+                    Greeting2(
+                        "application2",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
+
+            }
+        )*/
+
+        //MyApplication2Theme() {
+        //    Greeting2("name")
+        //}
+
+        //verticalLayout {
+        //}
+
+        //verticalLayout {
                         // justify your toolbar
 
                 //linearLayout = this
@@ -88,7 +113,8 @@ class SelectDeviceActivity: ComponentActivity(),KeyEvent.Callback {
 
                 }.lparams(width= matchParent,height = matchParent )
 */
-            //}
+        //}
+
     }
 
     fun getContext(): Context {
